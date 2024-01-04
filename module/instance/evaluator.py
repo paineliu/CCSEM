@@ -194,7 +194,7 @@ class EnhancedCOCOEvaluator(COCOEvaluator):
                     coco_results,
                     task,
                     kpt_oks_sigmas=self._kpt_oks_sigmas,
-                    use_fast_impl=self._use_fast_impl,
+                    # use_fast_impl=self._use_fast_impl,
                     img_ids=img_ids,
                 )
                 if len(coco_results) > 0
