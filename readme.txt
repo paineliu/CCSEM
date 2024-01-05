@@ -1,52 +1,4 @@
-1、安装环境
-
-安装pytorch
-安装detectron2
-git clone https://github.com/facebookresearch/detectron2.git
-
-git无法下载，下载后解压，不要进入目录下，执行：
-python -m pip install -e detectron2
-
-pip install opencv-python
-pip install scipy
-
-2、移动脚本文件
-
-script/train_instance.py
-script/inference_instance.py
-到上一层目录
-
-3、添加默认参数
-
-/mnt/data1/CCSE/common/cmd_parser.py
-
-+    # parser.add_argument('--config', type=str, default='./config/instance_segmentation/mask_rcnn_R_50_FPN_3x_handwritten.yaml', help='path to config file')
-+    parser.add_argument('--config', type=str, default='./config/instance_segmentation/mask_rcnn_R_50_FPN_3x_kaiti.yaml', help='path to config file')
-
-4、 注释代码
-module\sparse_rcnn\util\misc.py
-module\reference_sparse_rcnn\util\misc.py
-
-# if float(torchvision.__version__[:3]) < 0.7:
-#     from torchvision.ops import _new_empty_tensor
-#     from torchvision.ops.misc import _output_size
-
-5、修改配置文件
-config\instance_segmentation\mask_rcnn_R_50_FPN_3x_kaiti.yaml
-
-  WEIGHTS: "./output/mask_rcnn_R_50_FPN_3x_kaiti/model_final.pth"
-  OUTPUT_DIR: ./output
-  DATA_ROOT: ./dataset/kaiti_chinese_stroke_2021
-
-6、拷贝数据文件到dataset目录
-
-在dataset目录下执行
-unzip -d kaiti_chinese_stroke_2021 kaiti_chinese_stroke_2021.zip
-
- 7、修改 module/instance/evaluator.py
-
--                    use_fast_impl=self._use_fast_impl,
-+                    # use_fast_impl=self._use_fast_impl,
+ubuntu 22.04 环境搭建
 
 1、创建conda环境
 
@@ -93,3 +45,51 @@ AttributeError: module ‘PIL.Image‘ has no attribute ‘ANTIALIAS‘
 
 pip uninstall -y Pillow
 pip install Pillow==9.5.0
+
+二、修改配置文件
+
+config\instance_segmentation\mask_rcnn_R_50_FPN_3x_kaiti.yaml
+
+  WEIGHTS: "./output/mask_rcnn_R_50_FPN_3x_kaiti/model_final.pth"
+  OUTPUT_DIR: ./output
+  DATA_ROOT: ./dataset/kaiti_chinese_stroke_2021
+  VIS_DATASET_RESULT: true 
+  
+三、拷贝数据文件到dataset目录
+
+在dataset目录下执行
+unzip -d kaiti_chinese_stroke_2021 kaiti_chinese_stroke_2021.zip
+
+四、训练以及推理
+
+训练：train_instance.py
+推理：inference_instance.py
+
+
+附：CCSE源码修改内容
+
+1、移动脚本文件
+
+script/train_instance.py
+script/inference_instance.py
+到上一层目录
+
+2、添加默认参数
+
+/mnt/data1/CCSE/common/cmd_parser.py
+
++    # parser.add_argument('--config', type=str, default='./config/instance_segmentation/mask_rcnn_R_50_FPN_3x_handwritten.yaml', help='path to config file')
++    parser.add_argument('--config', type=str, default='./config/instance_segmentation/mask_rcnn_R_50_FPN_3x_kaiti.yaml', help='path to config file')
+
+3、 注释代码
+module\sparse_rcnn\util\misc.py
+module\reference_sparse_rcnn\util\misc.py
+
+# if float(torchvision.__version__[:3]) < 0.7:
+#     from torchvision.ops import _new_empty_tensor
+#     from torchvision.ops.misc import _output_size
+
+3、修改 module/instance/evaluator.py
+
+-                    use_fast_impl=self._use_fast_impl,
++                    # use_fast_impl=self._use_fast_impl,

@@ -104,7 +104,9 @@ def visualize(config, dataset_name, dataset_metadata, logger, num_vis=10):
 
 if __name__ == '__main__':
     args = parse_cmd_arg()
-    setup_seed(20)
+    
+    # setup_seed(20)
+    
     initializer = InstanceInitializer(args.config)
     initializer.logger = None
     num_gpu = len(initializer.config.GPU_IDS)
