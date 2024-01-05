@@ -12,11 +12,21 @@ from common.cmd_parser import parse_cmd_arg
 from pre_process.pre_process import read_to_gray_scale
 from module.instance.trainer import TrainerWithoutHorizontalFlip
 from common.utils import plt_show, join
+import torch
+import numpy as np
 
 from initializer.instance_initializer import InstanceInitializer
 
+def setup_seed(seed):
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    random.seed(seed)
+    torch.backends.cudnn.deterministic = True
+
 
 def main(init: InstanceInitializer):
+    
     config = init.config
     logger = logging.getLogger('detectron2')
 
@@ -94,7 +104,7 @@ def visualize(config, dataset_name, dataset_metadata, logger, num_vis=10):
 
 if __name__ == '__main__':
     args = parse_cmd_arg()
-
+    setup_seed(20)
     initializer = InstanceInitializer(args.config)
     initializer.logger = None
     num_gpu = len(initializer.config.GPU_IDS)
