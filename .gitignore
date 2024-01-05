@@ -146,3 +146,7 @@ output/
 terminal.record
 online.sh
 #terminal_new.record
+
+kaiti_chinese_stroke_2021/
+annotations/
+detectron2/
