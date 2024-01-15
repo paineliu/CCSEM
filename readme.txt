@@ -4,6 +4,7 @@ ubuntu 22.04 环境搭建
 
 conda create -n ccse python=3.9
 
+
 2、安装cuda 11.1
 wget https://developer.download.nvidia.com/compute/cuda/11.1.1/local_installers/cuda_11.1.1_455.32.00_linux.run
 sudo sh cuda_11.1.1_455.32.00_linux.run
@@ -11,6 +12,8 @@ sudo sh cuda_11.1.1_455.32.00_linux.run
 3、安装 pytorch 1.10.1
 https://pytorch.org/get-started/previous-versions/
 pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html
+
+https://hub.docker.com/r/pytorch/pytorch/tags
 
 4、安装detectron2
 https://detectron2.readthedocs.io/en/latest/tutorials/install.html
@@ -28,6 +31,11 @@ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 20 --slave /
 6、安装依赖库
 pip install opencv-python
 pip install scipy
+
+
+apt install libgl1-mesa-glx
+apt install libglib2.0-0
+
 
 7、报错解决方法：
 

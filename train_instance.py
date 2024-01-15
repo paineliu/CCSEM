@@ -29,7 +29,7 @@ def main(init: InstanceInitializer):
     
     config = init.config
     logger = logging.getLogger('detectron2')
-
+    logger.setLevel('ERROR')
     # launch again to support multi-process!
     init.launch_calling()
 

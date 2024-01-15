@@ -170,6 +170,7 @@ def main(init: InferenceInstanceInitializer):
     # evaluate the model and get bbox, segm metrics
     evaluate(init=init, config=config)
 
+    config.VIS_DATASET_RESULT = True
     if config.VIS_DATASET_RESULT:
         # visualize prediction in dataset
         visualize_prediction_in_datasets(config=config,
