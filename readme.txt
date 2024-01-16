@@ -101,3 +101,38 @@ module\reference_sparse_rcnn\util\misc.py
 
 -                    use_fast_impl=self._use_fast_impl,
 +                    # use_fast_impl=self._use_fast_impl,
+
+
+# print(matplotlib.get_cachedir())
+# print(matplotlib.matplotlib_fname())
+
+首先删除你的缓存。找到你的缓存
+import matplotlib as mpl
+print(mpl.get_cachedir())
+# /Users/xiewenwen/.matplotlib
+我的缓存文件夹是：/Users/xiewenwen/.matplotlib
+
+删除这个缓存文件夹：rm -r /Users/xiewenwen/.matplotlib/*
+
+2.下载SeiHei.ttf字体放入~/.fonts目录下。点击下载
+
+或者复制这个链接下载
+
+http://129.204.205.246/downloads/SimHei.ttf
+命令：
+
+（1）cd ~/.fonts 。如果没有就mkdir ~/.fonts
+
+（2）wget http://129.204.205.246/downloads/SimHei.ttf
+
+（3）安装fc-cache命令
+
+# 如果你是centos 
+sudo yum install fontconfig -y
+
+# 如果你是ubuntu
+sudo apt-get install fontconfig -y
+
+# 如果你是mac
+brew install fontconfig
+（4）再执行 fc-cache -fv 刷新字体缓存
